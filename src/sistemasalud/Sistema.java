@@ -18,13 +18,15 @@ public class Sistema implements Serializable{
     private LinkedList<Programa> programas;
     private LinkedList<Columna> columnas;
     private LinkedList<Eps> epss;
-    private LinkedList<Paciente> usuarios;
-
+    private LinkedList<Paciente> pacientes;
+    private LinkedList<Usuario> usuarios;
+   
     public Sistema() {
         programas = new LinkedList<>();
         columnas = new LinkedList<>();
         epss = new LinkedList<>();
-        usuarios = new LinkedList<>(); 
+        pacientes = new LinkedList<>(); 
+        usuarios = new LinkedList<>();
     }
     
     public void adicionarPrograma(Programa progAdicionar)throws Exception{
@@ -120,26 +122,52 @@ public class Sistema implements Serializable{
          }
       return actual;
     }
+    public Eps RetornarEpsPorNombre(String nombre){
+         Iterator<Eps> it = epss.iterator(); 
+         boolean encontrado = false;
+         Eps actual = epss.getFirst();
+      while(it.hasNext()&& encontrado == false){
+           actual = it.next();
+          if (actual.getName().equals(nombre)) {
+              encontrado = true;
+          }
+         }
+      return actual;
+    }
     
-    public void adicionarUsuario(Paciente UsuarioAdicionar)throws Exception{
+    
+    public void adicionarPaciente(Paciente UsuarioAdicionar)throws Exception{
        if (UsuarioAdicionar == null) {
             throw new Exception("El usuario no puede ser nulo");
         }
-        usuarios.add(UsuarioAdicionar);
+        pacientes.add(UsuarioAdicionar);
     }
-    public boolean buscarUsuario(Paciente UsuarioABuscar)throws Exception{
+    public boolean buscarPaciente(Paciente UsuarioABuscar)throws Exception{
         if (UsuarioABuscar == null) {
             throw new Exception("El usuario no se encuentra");
         }
-        return usuarios.contains(UsuarioABuscar);
+        return pacientes.contains(UsuarioABuscar);
     }
-    public boolean eliminarUsuario(Paciente usuarioAEliminar) throws Exception{
+    public boolean eliminarPaciente(Paciente usuarioAEliminar) throws Exception{
         if (usuarioAEliminar == null) {
             throw new Exception("El usuario a eliminar no se encuentra");
         }
-        return usuarios.remove(usuarioAEliminar);
+        return pacientes.remove(usuarioAEliminar);
     }
-
+    public Paciente RetornarEpsPorCC(String doc){
+         Iterator<Paciente> it = pacientes.iterator(); 
+         boolean encontrado = false;
+         Paciente actual = pacientes.getFirst();
+      while(it.hasNext()&& encontrado == false){
+           actual = it.next();
+          if (actual.getDocumento().equals(doc)) {
+              encontrado = true;
+          }
+         }
+      return actual;
+    }
+    
+    
     public void Inicializar() throws Exception{
         
         Item a = new Item("Dosis 1");
