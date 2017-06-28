@@ -20,8 +20,8 @@ public class Prueba {
         sis.adicionarEps(new Eps("SaludTotal","3"));
         sis.adicionarColumna(new Columna("001","Influenza"));
         sis.adicionarColumna(new Columna("002","DPT"));
-        sis.adicionarUsuario(new Usuario(0,"andres","padilla","gravier","C.C","1234091",Calendar.getInstance(),"Hombre",sis.RetornarEpsPorCodigo("1")));
-        sis.adicionarUsuario(new Usuario(1,"alfredo","padilla","gravier","C.C","12340917",Calendar.getInstance(),"Hombre",sis.RetornarEpsPorCodigo("2")));
+        sis.adicionarUsuario(new Paciente(0,"andres","padilla","gravier","C.C","1234091",Calendar.getInstance(),"Hombre",sis.RetornarEpsPorCodigo("1")));
+        sis.adicionarUsuario(new Paciente(1,"alfredo","padilla","gravier","C.C","12340917",Calendar.getInstance(),"Hombre",sis.RetornarEpsPorCodigo("2")));
         
         
     }
