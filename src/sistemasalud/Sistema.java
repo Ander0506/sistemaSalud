@@ -18,7 +18,7 @@ public class Sistema implements Serializable{
     private LinkedList<Programa> programas;
     private LinkedList<Columna> columnas;
     private LinkedList<Eps> epss;
-    private LinkedList<Usuario> usuarios;
+    private LinkedList<Paciente> usuarios;
 
     public Sistema() {
         programas = new LinkedList<>();
@@ -121,19 +121,19 @@ public class Sistema implements Serializable{
       return actual;
     }
     
-    public void adicionarUsuario(Usuario UsuarioAdicionar)throws Exception{
+    public void adicionarUsuario(Paciente UsuarioAdicionar)throws Exception{
        if (UsuarioAdicionar == null) {
             throw new Exception("El usuario no puede ser nulo");
         }
         usuarios.add(UsuarioAdicionar);
     }
-    public boolean buscarUsuario(Usuario UsuarioABuscar)throws Exception{
+    public boolean buscarUsuario(Paciente UsuarioABuscar)throws Exception{
         if (UsuarioABuscar == null) {
             throw new Exception("El usuario no se encuentra");
         }
         return usuarios.contains(UsuarioABuscar);
     }
-    public boolean eliminarUsuario(Usuario usuarioAEliminar) throws Exception{
+    public boolean eliminarUsuario(Paciente usuarioAEliminar) throws Exception{
         if (usuarioAEliminar == null) {
             throw new Exception("El usuario a eliminar no se encuentra");
         }
