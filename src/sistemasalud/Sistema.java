@@ -8,6 +8,10 @@ package sistemasalud;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Vector;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -28,6 +32,28 @@ public class Sistema implements Serializable{
         pacientes = new LinkedList<>(); 
         usuarios = new LinkedList<>();
     }
+
+    public LinkedList<Programa> getProgramas() {
+        return programas;
+    }
+
+    public LinkedList<Columna> getColumnas() {
+        return columnas;
+    }
+
+    public LinkedList<Eps> getEpss() {
+        return epss;
+    }
+
+    public LinkedList<Paciente> getPacientes() {
+        return pacientes;
+    }
+
+    public LinkedList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+    
+    
     
     public void adicionarPrograma(Programa progAdicionar)throws Exception{
        if (progAdicionar == null) {
@@ -167,6 +193,19 @@ public class Sistema implements Serializable{
       return actual;
     }
     
+    //Metodos Auxiliares
+    public TableModel ActualizarTablaEps (LinkedList<Eps> epss,JTable tabla){
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        Iterator<Eps> it = epss.iterator();
+        while(it.hasNext()){
+            String[] vec = new String[2];
+            Eps actual = it.next();
+            vec[0] = actual.getCode();
+            vec[1] = actual.getName();
+            modelo.addRow(vec);
+        } 
+        return modelo;
+    }
     
     public void Inicializar() throws Exception{
         
