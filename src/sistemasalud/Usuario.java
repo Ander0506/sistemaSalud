@@ -12,29 +12,22 @@ package sistemasalud;
 public class Usuario {
     
     public String nombre;
+    public String user;
     public String apellidos;
     public String id;
     public String correo;
     public String tipo;
     public String sexo;
     public Boolean estado;
+    public String password;
 
-    public Usuario(String nombre, String apellidos, String id, String correo, String tipo, String sexo) throws Exception {
-        
-        if (id== null) { throw new Exception("id No puede Ser nulo"); } 
-        if (nombre== null) { throw new Exception("nombre No puede Ser nulo"); } 
-        if (apellidos== null) { throw new Exception("apellidos No puede Ser nulo"); } 
-        if (correo== null) { throw new Exception("correo No puede Ser nulo"); } 
-        if (sexo== null) { throw new Exception("Sexo No puede Ser nulo"); } 
-        if (tipo== null) { throw new Exception("tipo No puede Ser nulo"); } 
-
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.id = id;
-        this.correo = correo;
-        this.tipo = tipo;
-        this.sexo = sexo;
-        this.estado = true;
+    public Usuario(String user, String password) throws Exception {
+        if(user == null){ throw new Exception("El usuario no puede ser nulo"); }
+        if(password == null){ throw new Exception("la contraseña no puede ser nula");}
+ 
+        this.user = user;
+        this.password = password;
+        this.estado = true;       
     }
 
     public String getNombre() {
