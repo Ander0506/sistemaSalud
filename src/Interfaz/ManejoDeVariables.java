@@ -5,9 +5,11 @@
  */
 package Interfaz;
 
-import java.util.LinkedList;
-import javax.swing.table.DefaultTableModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
+import sistemasalud.Eps;
 import sistemasalud.Sistema;
 
 /**
@@ -20,7 +22,6 @@ public class ManejoDeVariables extends javax.swing.JFrame {
      * Creates new form ManejoDeVariables
      */
     Sistema system = new Sistema();
-    CrearEps crearEps = new CrearEps();
     public ManejoDeVariables() {
         initComponents();
     }
@@ -34,11 +35,28 @@ public class ManejoDeVariables extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        Eps = new javax.swing.JPanel();
+        AñadirEps = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaEps = new javax.swing.JTable();
-        AñadirEps = new javax.swing.JButton();
+        EditarEps = new javax.swing.JButton();
+        EliminarEps = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        BuscarEps = new javax.swing.JButton();
+        BuscarEpsTxt = new javax.swing.JTextField();
+        Columna = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        AñadirEps.setText("Añadir Eps");
+        AñadirEps.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirEpsActionPerformed(evt);
+            }
+        });
 
         TablaEps.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -58,35 +76,126 @@ public class ManejoDeVariables extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TablaEps);
 
-        AñadirEps.setText("Añadir Eps");
-        AñadirEps.addActionListener(new java.awt.event.ActionListener() {
+        EditarEps.setText("Editar");
+        EditarEps.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AñadirEpsActionPerformed(evt);
+                EditarEpsActionPerformed(evt);
             }
         });
+
+        EliminarEps.setText("Eliminar Eps");
+        EliminarEps.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarEpsActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("ADMINISTRAR ENTIDADES PRESTADORAS DE SALUD");
+
+        BuscarEps.setText("Buscar");
+        BuscarEps.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarEpsActionPerformed(evt);
+            }
+        });
+
+        BuscarEpsTxt.setToolTipText("Codigo o Nombre De la Eps a buscar");
+        BuscarEpsTxt.setName(""); // NOI18N
+        BuscarEpsTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarEpsTxtActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout EpsLayout = new javax.swing.GroupLayout(Eps);
+        Eps.setLayout(EpsLayout);
+        EpsLayout.setHorizontalGroup(
+            EpsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EpsLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(AñadirEps, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(EliminarEps, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(EditarEps, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(BuscarEpsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BuscarEps, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(121, 121, 121))
+            .addComponent(jScrollPane1)
+            .addGroup(EpsLayout.createSequentialGroup()
+                .addGap(253, 253, 253)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        EpsLayout.setVerticalGroup(
+            EpsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EpsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(EpsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AñadirEps, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EditarEps, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EliminarEps, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BuscarEps, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BuscarEpsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
+        );
+
+        jTabbedPane1.addTab("EPS", Eps);
+
+        javax.swing.GroupLayout ColumnaLayout = new javax.swing.GroupLayout(Columna);
+        Columna.setLayout(ColumnaLayout);
+        ColumnaLayout.setHorizontalGroup(
+            ColumnaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 793, Short.MAX_VALUE)
+        );
+        ColumnaLayout.setVerticalGroup(
+            ColumnaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 435, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("COLUMNA", Columna);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 793, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 435, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("PROGRAMA", jPanel3);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 793, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 435, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("PACIENTE", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(306, 306, 306)
-                        .addComponent(AñadirEps))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(218, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(AñadirEps)
-                .addContainerGap(168, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -95,11 +204,59 @@ public class ManejoDeVariables extends javax.swing.JFrame {
     private void AñadirEpsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirEpsActionPerformed
         // TODO add your handling code here:
        
-       crearEps.setVisible(true);
-       TableModel modelo = system.ActualizarTablaEps(system.getEpss(), TablaEps);
-       TablaEps.setModel(modelo);
-        
+     CrearEps dialog = new CrearEps(this, true);
+     dialog.setVisible(true);
+     system.ActualizarTablaEps(TablaEps);
     }//GEN-LAST:event_AñadirEpsActionPerformed
+
+    private void EditarEpsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEpsActionPerformed
+        // TODO add your handling code here:
+    int pos = TablaEps.getSelectedRow();
+    if(pos >= 0){
+    Eps eps = system.getEpss().get(pos);
+    EditarEps dialog = new EditarEps(this,true,eps);
+    dialog.setVisible(true);
+     system.ActualizarTablaEps(TablaEps);
+    }else{
+        JOptionPane.showMessageDialog(null,"seleccione una fila");
+    }
+    
+    }//GEN-LAST:event_EditarEpsActionPerformed
+
+    private void EliminarEpsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarEpsActionPerformed
+        // TODO add your handling code here:
+    int pos = TablaEps.getSelectedRow();
+    TableModel modelo = TablaEps.getModel();
+    String codigo = (String) modelo.getValueAt(pos,0);
+    Eps EpsAEliminar = system.RetornarEpsPorCodigo(codigo);
+        try {
+            system.eliminarEps(EpsAEliminar);
+        } catch (Exception ex) {
+            Logger.getLogger(ManejoDeVariables.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    system.ActualizarTablaEps(TablaEps);
+    TablaEps.clearSelection();
+     
+    }//GEN-LAST:event_EliminarEpsActionPerformed
+
+    private void BuscarEpsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarEpsActionPerformed
+        // TODO add your handling code here:
+     
+     Eps eps = system.RetornarEpsPorCodigo(BuscarEpsTxt.getText());
+     if (eps == null){
+         eps = system.RetornarEpsPorNombre(BuscarEpsTxt.getText());
+     }
+     int pos = system.GetPosElementEps(eps);
+     TablaEps.getSelectionModel().setSelectionInterval(pos,pos);
+     BuscarEpsTxt.setText("");
+        
+    }//GEN-LAST:event_BuscarEpsActionPerformed
+
+    private void BuscarEpsTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarEpsTxtActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_BuscarEpsTxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,7 +295,17 @@ public class ManejoDeVariables extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AñadirEps;
+    private javax.swing.JButton BuscarEps;
+    private javax.swing.JTextField BuscarEpsTxt;
+    private javax.swing.JPanel Columna;
+    private javax.swing.JButton EditarEps;
+    private javax.swing.JButton EliminarEps;
+    private javax.swing.JPanel Eps;
     private javax.swing.JTable TablaEps;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

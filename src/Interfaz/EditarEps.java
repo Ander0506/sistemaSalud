@@ -5,24 +5,26 @@
  */
 package Interfaz;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import sistemasalud.Eps;
 
 /**
  *
  * @author andre
  */
-public class CrearEps extends javax.swing.JDialog {
+public class EditarEps extends javax.swing.JDialog {
 
     /**
      * Creates new form CrearEpsa
      */
     private ManejoDeVariables padre = (ManejoDeVariables) this.getParent();
-
-    public CrearEps(java.awt.Frame parent, boolean modal) {
+    private Eps epsEditar;
+    public EditarEps(java.awt.Frame parent, boolean modal,Eps eps) {
         super(parent, modal);
         initComponents();
+        epsEditar = eps;
+        CodigoTxt.setText(eps.getCode());
+        NombreTxt.setText(eps.getName());
+        
     }
 
     /**
@@ -50,7 +52,7 @@ public class CrearEps extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("CREAR EPS");
+        jLabel1.setText("EDITAR EPS");
 
         jLabel2.setText("Codigo:");
 
@@ -99,16 +101,9 @@ public class CrearEps extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AceptarBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarBtActionPerformed
+        padre.system.EditarEps(NombreTxt.getText(),CodigoTxt.getText(),epsEditar);
+        this.setVisible(false);
         
-            // TODO add your handling code here:
-
-            Eps A = new Eps(NombreTxt.getText(),CodigoTxt.getText());
-        try {
-            padre.system.adicionarEps(A);
-        } catch (Exception ex) {
-            Logger.getLogger(CrearEps.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            this.setVisible(false);
         
     }//GEN-LAST:event_AceptarBtActionPerformed
 

@@ -84,7 +84,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="CREAR EPS"/>
+        <Property name="text" type="java.lang.String" value="EDITAR EPS"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">

@@ -8,10 +8,8 @@ package sistemasalud;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -36,19 +34,15 @@ public class Sistema implements Serializable{
     public LinkedList<Programa> getProgramas() {
         return programas;
     }
-
     public LinkedList<Columna> getColumnas() {
         return columnas;
     }
-
     public LinkedList<Eps> getEpss() {
         return epss;
     }
-
     public LinkedList<Paciente> getPacientes() {
         return pacientes;
     }
-
     public LinkedList<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -160,7 +154,31 @@ public class Sistema implements Serializable{
          }
       return actual;
     }
-    
+    public void ActualizarTablaEps (JTable tabla){
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel(); 
+        this.vaciarTabla(tabla);
+        int cantFilas = epss.size();
+        modelo.setRowCount(cantFilas);
+        for (int i = 0; i <cantFilas; i++) {
+            modelo.setValueAt(epss.get(i).getCode(), i, 0);
+            modelo.setValueAt(epss.get(i).getName(), i, 1);
+        }
+    }
+    public int GetPosElementEps(Object obj ){
+       
+        for (int i = 0; i < epss.size(); i++) {
+            Object actual = epss.get(i);
+            if(actual.equals(obj)){
+                return (i);
+            }
+        }
+       return -1;
+    }
+    public void EditarEps(String name, String code,Eps epsEditar){
+       int pos = GetPosElementEps(epsEditar);
+        epss.get(pos).setCode(code);
+        epss.get(pos).setName(name);
+    }
     
     public void adicionarPaciente(Paciente UsuarioAdicionar)throws Exception{
        if (UsuarioAdicionar == null) {
@@ -180,7 +198,7 @@ public class Sistema implements Serializable{
         }
         return pacientes.remove(usuarioAEliminar);
     }
-    public Paciente RetornarEpsPorCC(String doc){
+    public Paciente RetornarPacientePorCC(String doc){
          Iterator<Paciente> it = pacientes.iterator(); 
          boolean encontrado = false;
          Paciente actual = pacientes.getFirst();
@@ -194,86 +212,12 @@ public class Sistema implements Serializable{
     }
     
     //Metodos Auxiliares
-    public TableModel ActualizarTablaEps (LinkedList<Eps> epss,JTable tabla){
-        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-        Iterator<Eps> it = epss.iterator();
-        while(it.hasNext()){
-            String[] vec = new String[2];
-            Eps actual = it.next();
-            vec[0] = actual.getCode();
-            vec[1] = actual.getName();
-            modelo.addRow(vec);
-        } 
-        return modelo;
+    
+    //Vaciar Tabla
+    public void vaciarTabla(JTable table){
+        DefaultTableModel dt = (DefaultTableModel) table.getModel();
+        for (int i = 0; i < dt.getRowCount(); i++) {
+            dt.removeRow(i);
+        }
     }
-    
-    public void Inicializar() throws Exception{
-        
-        Item a = new Item("Dosis 1");
-        Item b = new Item("Dosis 2");
-        Item c = new Item("Dosis 3");
-        Item d = new Item("Dosis 4");
-       
-       Columna hepatitis = new Columna("001","Hepatitis");
-       Columna neumo = new Columna("002","Neumococo");
-       Columna influenza = new Columna("003","Influenza");
-       Columna bcg = new Columna("004","Bcg");
-       Columna sarampion = new Columna("005","sarampion");
-       Columna fiebre = new Columna("006","fiebre amarilla");
-  
-       hepatitis.adicionarItem(a);
-       hepatitis.adicionarItem(b);
-       hepatitis.adicionarItem(c);
-       neumo.adicionarItem(a);       
-       neumo.adicionarItem(b);
-       influenza.adicionarItem(a);
-       influenza.adicionarItem(b);
-       bcg.adicionarItem(a);
-       bcg.adicionarItem(b);
-       bcg.adicionarItem(c);
-       sarampion.adicionarItem(a);
-       sarampion.adicionarItem(b);
-       sarampion.adicionarItem(c);
-       fiebre.adicionarItem(a);
-       
-        adicionarColumna(sarampion);
-        adicionarColumna(fiebre);
-        adicionarColumna(bcg);
-        adicionarColumna(hepatitis);
-        adicionarColumna(neumo);
-        adicionarColumna(influenza);
-       
-       Programa adulto = new Programa("1","Adulto Mayor");
-       Programa adolescente = new Programa("2","Adolescente");
-       Programa recienNacido = new Programa("3","Neonatos");
-       Programa primeraInfancia = new Programa("4","Adulto Mayor");
-       
-        adicionarPrograma(adolescente);
-        adicionarPrograma(adulto);
-        adicionarPrograma(recienNacido);
-        adicionarPrograma(primeraInfancia);
-       
-       adulto.adicionarcolumna(hepatitis);
-       adulto.adicionarcolumna(influenza);
-       adolescente.adicionarcolumna(sarampion);
-       recienNacido.adicionarcolumna(bcg);
-       recienNacido.adicionarcolumna(fiebre);
-       primeraInfancia.adicionarcolumna(influenza);
-       primeraInfancia.adicionarcolumna(neumo);
-       
-       
-       Eps nuevaEps = new Eps("Nueva Eps","Ne");
-       Eps saludCoop = new Eps("SaludCoop","Sc");
-       Eps saludTotal = new Eps("SaludTotal","St");
-       Eps coomeva = new Eps("coomeva","Coo");
-
-       adicionarEps(saludTotal);
-       adicionarEps(saludCoop);
-       adicionarEps(nuevaEps);
-       adicionarEps(coomeva);
-        
-        
-    }
-    
-    
 }
